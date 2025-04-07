@@ -1,0 +1,157 @@
+.header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;    
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .welcome {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .welcome h2 {
+    color: rgb(0, 3, 21);
+    font-size: 20px;
+    font-weight: 600;
+    font-family: poppins;
+    margin: 0;
+  }
+  
+  .date {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+    font-family: poppins;
+  }
+  
+  .rightSection {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  
+  .time {
+    font-size: 16px;
+    font-family: poppins;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .searchBar {
+    width: 250px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    font-family: poppins;
+    transition: 0.3s;
+  }
+  
+  .searchBar:focus {
+    border-color: rgb(255, 102, 0);
+    box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+  }
+  
+  /* Notification Button */
+  .notification {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    color: #555;
+    transition: 0.3s;
+  }
+  
+  .notification:hover,
+  .notification.active {
+    color: rgb(255, 102, 0)
+  }
+  
+  /* Profile Button */
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 0.8em;
+    font-family: poppins;
+    color: rgb(0, 3, 21);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .profile:hover,
+  .profile.active {
+    color: rgb(255, 102, 0);
+  }
+  
+  /* Dropdown Styling */
+  .dropdown {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    z-index: 1000;
+  }
+  
+  .dropdownItem {
+    padding: 10px;
+    font-size: 14px;
+    font-family: poppins;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .dropdownItem:hover {
+    background: #f1f1f1;
+  }
+  
+  .dropdownItemLogout {
+    font-family: poppins;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: red;
+    transition: background 0.3s;
+  }
+  
+  .dropdownItemLogout:hover {
+    background: rgba(255, 0, 0, 0.1);
+  }
+  
+  /* Positioning for Notifications */
+  .notifContainer {
+    position: relative;
+  }
+  
+  .profileContainer {
+    position: relative;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header {
+      padding: 0 30px;
+    }
+  
+    .searchBar {
+      width: 180px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .searchBar {
+      display: none;
+    }
+  }
+  

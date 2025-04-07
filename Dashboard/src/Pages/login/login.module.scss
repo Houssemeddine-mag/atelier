@@ -1,0 +1,108 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #ececec;
+}
+
+.loginform { 
+  background: #fff;
+  padding: 70px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 550px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.logo {
+  font-size: 3em;
+  font-weight: bold;
+  margin-top: -1em;
+}
+
+.feed {
+  color: rgb(255, 102, 0);
+}
+
+.me {
+  color: #222;
+}
+
+.title_div {
+  text-align: center;
+}
+
+.title {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #222;
+  font-family: poppins;
+}
+
+h5 {
+  font-size: 0.8em;
+  color: #777;
+  font-family: poppins;
+  margin-bottom: 1.5em;
+  margin-top: 0.5em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+p {
+  font-size: 14px;
+  font-family: poppins;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.loginButton {
+  background: #ff6600;
+  color: #fff;
+  font-size: 16px;
+  font-family:poppins;
+  font-weight: 600;
+  padding: 12px;
+  margin-top: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.loginButton:hover {
+  background: #e65c00;
+}
+
+.copy {
+  color: #777;
+}
+
+.copymsg{
+  margin-top: 1em;
+  margin-bottom: -3em;
+  font-size: 0.8em;
+}

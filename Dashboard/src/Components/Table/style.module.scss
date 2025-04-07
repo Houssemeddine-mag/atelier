@@ -1,0 +1,118 @@
+/* Search & Filter Section */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* Search Input */
+.searchInput {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+  font-size: 1em;
+  font-family: poppins;
+  width: 300px;
+}
+
+/* Filter Button */
+.filterButton {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 3, 21);
+  padding: 8px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1em;
+  font-family: poppins !important;
+  font-weight: 500;
+  border-color: #313131;
+}
+
+/* Icon inside the button */
+.filterButton svg {
+  font-size: 1.3em;
+}
+
+.filterButton:hover {
+  background-color: rgb(255, 102, 0);
+  color: #ffffff;
+  border-color: rgb(255, 102, 0);
+}
+
+
+
+/* Table container */
+.tableContainer {
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styles */
+.table {
+  min-width: 650px !important;
+}
+
+/* Header row */
+.tableHeaderRow {
+  background-color: rgb(239, 239, 239) !important;
+}
+
+/* Header cells */
+.tableHeader {
+  color: rgb(0, 3, 21) !important;
+  font-size: 1em !important;
+  font-family: poppins !important;
+  text-align: left !important;
+}
+
+/* Table row styles */
+.tableRow:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.tableCell {
+  padding: 10px !important;
+  text-align: left !important;
+  font-size: 1em !important;
+  border-bottom: 1px solid #ddd !important;
+}
+
+/* Open state (green) */
+.open {
+  color: green !important;
+  font-weight: bold;
+}
+
+/* Closed state (red) */
+.closed {
+  color: red !important;
+  font-weight: bold;
+}
+
+/* Action buttons */
+.actionButtons {
+  display: flex;
+  gap: 0.5em;
+  justify-content: left;
+  cursor: pointer;
+}
+
+.iconButton {
+  color: rgb(122, 122, 122) !important;
+  font-size: 1.9em !important; /* Adjusted size */
+  transition: color 0.3s ease-in-out !important;
+}
+
+.iconButton:hover {
+  color: rgb(0, 3, 21) !important;
+}

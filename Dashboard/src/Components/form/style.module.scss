@@ -1,0 +1,146 @@
+h2{
+    font-family: poppins;
+    text-decoration: none;
+    font-size: 1.4em
+}
+/* New styles for the extended Add Director form */
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+  font-family: poppins;
+  font-size: 1.1em;
+}
+
+.fileInputContainer + .fileInputContainer {
+  margin-top: 10px;
+}
+
+
+
+/* Form content */
+/* Form container wider and scrollable */
+.formContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 30em; 
+  max-height: 35em; 
+  overflow-y: auto; 
+  position: relative;
+
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ff6600;
+    border-radius: 10px;
+  }
+}
+
+  
+  /* Close button */
+  .closeButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #333;
+    cursor: pointer;
+  
+    &:hover {
+      color: red;
+    }
+  }
+  
+  /* Button styles */
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .submitButton {
+    width: 48%;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    border-color: #ff6600;
+  }
+  .cancelButton{
+    width: 48%;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer; 
+    border-color: #ccc;
+
+  }
+  .submitButton {
+    background-color: #ff6600;
+    color: white;
+  
+    &:hover {
+      background-color: #e65c00;
+    }
+  }
+  
+  .cancelButton {
+    background-color: #ccc;
+    color: black;
+  
+    &:hover {
+      background-color: #bbb;
+    }
+  }
+  
+  /* File input container */
+.fileInputContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Hide default file input */
+.hiddenFileInput {
+  display: none;
+}
+
+/* Custom file upload button */
+.customFileButton {
+  background-color: #ff6600;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8em;
+  text-align: center;
+  transition: background 0.3s;
+  font-family: poppins;
+  margin-top: 1em;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #000;
+  }
+}
+
+/* Display selected file name */
+.fileName {
+  font-size: 0.9em;
+  font-family: poppins;
+  color: #555;
+}
+

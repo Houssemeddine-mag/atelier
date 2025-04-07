@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  
+  padding: 0;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  
+  width: 100%;
+
+  .main-content {
+    padding: 20px;
+    width: 100%;
+    color: black;
+  }
+}
+
+// TA9DER DIR HAKA F SCSS FI BA3DAHOUM KI YKOUNOU DIV DA5L DIV OU KAYEN TANI LES VARIABLES OU KAMEL
+// OMBA3D CHOUF M3A GPT
