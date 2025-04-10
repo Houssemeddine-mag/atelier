@@ -1,13 +1,6 @@
-/* .page {
-  display: flex;
-  flex-direction: column;
-  gap: 15em;
-  width: 100%;
-} */
 .page {
   display: flex;
   flex-direction: column;
-  gap: 15em;
+  gap: 2em;
   width: 100%;
 }
-

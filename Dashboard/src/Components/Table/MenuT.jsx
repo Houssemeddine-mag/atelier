@@ -33,7 +33,7 @@ export default function MenuTable({ columns, data }) {
       <div className={styles.controls}>
         <input
           type="text"
-          placeholder="Search menu..."
+          placeholder="Search..."
           value={searchTerm}
           onChange={handleSearchChange}
           className={styles.searchInput}
@@ -42,7 +42,7 @@ export default function MenuTable({ columns, data }) {
           <VscSettings /> Filter <MdKeyboardArrowDown />
         </button>
         <button className={styles.addButton}>
-          Add Item <CiCirclePlus />
+          Add <CiCirclePlus />
         </button>
       </div>
 

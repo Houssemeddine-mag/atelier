@@ -9,15 +9,15 @@ export default function ProfileForm() {
       <form className={styles.form}>
         <div className={styles.row}>
           <label>First Name</label>
-          <input type="text" defaultValue="John" />
+          <input type="text" defaultValue="Houssem Eddine" />
         </div>
         <div className={styles.row}>
           <label>Last Name</label>
-          <input type="text" defaultValue="Doe" />
+          <input type="text" defaultValue="Magra" />
         </div>
         <div className={styles.row}>
           <label>Email Address</label>
-          <input type="email" defaultValue="j.doe@feedme.com" />
+          <input type="email" defaultValue="H.Magra@feedme.com" />
         </div>
         <div className={styles.row}>
           <label>Phone Number</label>
@@ -29,7 +29,7 @@ export default function ProfileForm() {
         </div>
         <div className={styles.row}>
           <label>Date of Birth</label>
-          <input type="date" defaultValue="1985-12-03" />
+          <input type="date" defaultValue="2003-06-20" />
         </div>
         <div className={styles.row}>
           <label>Address</label>
