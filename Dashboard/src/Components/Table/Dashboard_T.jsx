@@ -77,7 +77,6 @@ import { MdOutlineAnalytics } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-
 import styles from "./style.module.scss"; // Import SCSS styles
 
 export default function TableComponent({ columns, data }) {
@@ -98,6 +97,7 @@ export default function TableComponent({ columns, data }) {
   return (
     <div className={styles.tableContainer}>
       <div className={styles.controls}>
+        <h2>Restaurants status</h2>
         <input
           type="text"
           placeholder="Search..."
@@ -105,10 +105,13 @@ export default function TableComponent({ columns, data }) {
           onChange={handleSearchChange}
           className={styles.searchInput}
         />
-        <button className={styles.filterButton}> <VscSettings />Filter <MdKeyboardArrowDown />
+        <button className={styles.filterButton}>
+          {" "}
+          <VscSettings />
+          Filter <MdKeyboardArrowDown />
         </button>
       </div>
-      
+
       <TableContainer component={Paper}>
         <Table className={styles.table}>
           <TableHead>
@@ -151,8 +154,6 @@ export default function TableComponent({ columns, data }) {
           </TableBody>
         </Table>
       </TableContainer>
-
-      
     </div>
   );
 }

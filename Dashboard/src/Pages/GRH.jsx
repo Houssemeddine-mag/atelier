@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../Components/Header";
 import TableComponent from "../Components/Table/GRH_T";
-
+import PageTitle from "../Components/pagetitle";
 export default function GRH() {
   const columns = [
     "Name",
@@ -24,6 +24,10 @@ export default function GRH() {
     <div className="page">
       <Header />
       <div className="content">
+        <PageTitle
+          title="Manage Human Resources"
+          description="Human Resources Management for Restaurant Directors"
+        />
         <TableComponent columns={columns} data={data} />
       </div>
     </div>

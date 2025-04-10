@@ -11,7 +11,7 @@
 import React from "react";
 import Header from "../Components/Header";
 import MenuTable from "../Components/Table/MenuT"; // Adjust path if needed
-
+import PageTitle from "../Components/pagetitle";
 export default function Menu() {
   const columns = ["Name", "Category", "Price", "Availability", "Actions"];
 
@@ -39,7 +39,13 @@ export default function Menu() {
   return (
     <div className="page">
       <Header />
-      <MenuTable columns={columns} data={data} />
+      <div className="content">
+        <PageTitle
+          title="Menu"
+          description="Manage dishes, ingredients, and promotional packs."
+        />
+        <MenuTable columns={columns} data={data} />
+      </div>
     </div>
   );
 }
