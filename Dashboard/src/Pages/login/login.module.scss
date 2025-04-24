@@ -5,6 +5,7 @@
   justify-content: center;
   height: 100vh;
   background: #ececec;
+  
 }
 
 .loginform { 
@@ -17,21 +18,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5em;
+  gap: -10em;
 }
 
-.logo {
-  font-size: 3em;
-  font-weight: bold;
-  margin-top: -1em;
-}
 
-.feed {
-  color: rgb(255, 102, 0);
-}
+// .logo {
+//   font-size: 3em;
+//   font-weight: bold;
+//   margin-top: -1em;
+// }
 
-.me {
-  color: #222;
+// .feed {
+//   color: rgb(255, 102, 0);
+// }
+
+// .me {
+//   color: #222;
+// }
+
+.logoimg {
+  width: 230px;
+  height: 230px;
+  object-fit: contain; /* maintains aspect ratio */
+  display: block; /* ensures proper rendering */
+  margin: 1em auto; /* centers the image */
 }
 
 .title_div {

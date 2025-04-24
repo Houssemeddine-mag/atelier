@@ -3,12 +3,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
   padding: 10px;
   background-color: #ffffff;
   border-radius: 8px;
 }
-
+/* Table Title */
+.tableTitle {
+  color: rgb(0, 3, 21);
+  font-size: 1.2em;
+  font-family: poppins;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+  text-align: left;
+  padding-left: 10px;
+}
 /* Search Input */
 .searchInput {
   padding: 8px;
@@ -16,7 +25,7 @@
   border-radius: 1em;
   font-size: 1em;
   font-family: poppins;
-  width: 300px;
+  width: 20em;
 }
 
 /* Filter Button */
@@ -34,6 +43,7 @@
   font-family: poppins !important;
   font-weight: 500;
   border-color: #313131;
+  
 }
 
 /* Icon inside the button */
@@ -153,7 +163,6 @@
 .iconButtondelete:hover {
   color: rgb(255, 0, 0) !important;
 }
-
 
 /* Blur effect when form is open */
 .blurred {

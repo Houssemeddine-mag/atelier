@@ -9,6 +9,7 @@
 // import MenuPage from "./Pages/Menu";
 // import Settings from "./Pages/Settings";
 // import Profile from "./Pages/Profile";
+// import Login from "./Pages/login/login"; // Import the Login page
 
 // import "./index.scss";
 
@@ -16,22 +17,31 @@
 // function App() {
 //   return (
 //     <Router>
-//       <div className="app-container">
-//         <Sidebar />
+//       <Routes>
+//         {/* Login Page First */}
+//         <Route path="/" element={<Login />} />
 
-//         <div className="main-content">
-//           <Routes>
-//             <Route path="/dashboard" element={<Dashboard />} />
-//             <Route path="/restaurants" element={<Restaurants />} />
-//             <Route path="/grh" element={<GRH />} />
-//             <Route path="/menu" element={<MenuPage />} />
-//             <Route path="/settings" element={<Settings />} />
-//             <Route path="/profile" element={<Profile />} />
-//             <Route path="*" element={<Dashboard />} />{" "}
-//             {/* Fallback to Dashboard */}
-//           </Routes>
-//         </div>
-//       </div>
+//         {/* Dashboard & Other Pages (With Sidebar) */}
+//         <Route
+//           path="/*"
+//           element={
+//             <div className="app-container">
+//               <Sidebar />
+//               <div className="main-content">
+//                 <Routes>
+//                   <Route path="/dashboard" element={<Dashboard />} />
+//                   <Route path="/restaurants" element={<Restaurants />} />
+//                   <Route path="/grh" element={<GRH />} />
+//                   <Route path="/menu" element={<MenuPage />} />
+//                   <Route path="/settings" element={<Settings />} />
+//                   <Route path="/profile" element={<Profile />} />
+//                   <Route path="*" element={<Dashboard />} /> {/* Fallback */}
+//                 </Routes>
+//               </div>
+//             </div>
+//           }
+//         />
+//       </Routes>
 //     </Router>
 //   );
 // }
@@ -41,7 +51,6 @@
 //     <App />
 //   </StrictMode>
 // );
-
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -53,7 +62,9 @@ import GRH from "./Pages/GRH";
 import MenuPage from "./Pages/Menu";
 import Settings from "./Pages/Settings";
 import Profile from "./Pages/Profile";
-import Login from "./Pages/login/login"; // Import the Login page
+import Login from "./Pages/login/login";
+import ChefDashboard from "./Pages/ChefDashboard"; // Import the ChefDashboard
+import DirectorDash from "./Pages/directorDash";
 
 import "./index.scss";
 
@@ -65,6 +76,10 @@ function App() {
         {/* Login Page First */}
         <Route path="/" element={<Login />} />
 
+        {/* Chef Dashboard (standalone without Sidebar) */}
+        <Route path="/chefdashboard" element={<ChefDashboard />} />
+
+        <Route path="/directorDash" element={<DirectorDash />} />
         {/* Dashboard & Other Pages (With Sidebar) */}
         <Route
           path="/*"

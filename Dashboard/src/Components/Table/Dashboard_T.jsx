@@ -96,8 +96,8 @@ export default function TableComponent({ columns, data }) {
 
   return (
     <div className={styles.tableContainer}>
+      <h2 className={styles.tableTitle}>Restaurant Status</h2>
       <div className={styles.controls}>
-        <h2>Restaurants status</h2>
         <input
           type="text"
           placeholder="Search..."

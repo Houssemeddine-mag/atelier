@@ -47,6 +47,7 @@ export default function TableComponent({ columns, data }) {
           isFormOpen ? styles.blurred : ""
         }`}
       >
+        <h2 className={styles.tableTitle}>Restaurant Status</h2>
         <div className={styles.controls}>
           <input
             type="text"
