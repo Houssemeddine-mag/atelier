@@ -30,7 +30,7 @@ export default function MenuTable({ columns, data }) {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.tableTitle}>Ingrediants Management</h2>
+      <h2 className={styles.tableTitle}>Dishes Management</h2>
       <div className={styles.controls}>
         <input
           type="text"

@@ -42,7 +42,7 @@ export default function Menu() {
       <div className="content">
         <PageTitle
           title="Menu"
-          description="Manage dishes, ingredients, and promotional packs."
+          description="Manage dishes."
         />
         <MenuTable columns={columns} data={data} />
       </div>
