@@ -16,21 +16,56 @@ import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 
 import AddRestaurantForm from "../form/AddGRHForm"; // Import the form component
+import EditRestaurantForm from "./EditGRHForm"; // You'll need to create this component
 
 import styles from "./Restaurant.module.scss"; // Import SCSS styles
 
-export default function TableComponent({ columns, data }) {
+
+
+export default function TableComponent({ columns, data: initialData }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isEditFormOpen, setIsEditFormOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
+  const [data, setData] = useState(initialData);
 
   // Handle search input change
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  // Open and close form
+  // Form handlers
   const openForm = () => setIsFormOpen(true);
   const closeForm = () => setIsFormOpen(false);
+  
+  const openEditForm = (item) => {
+    setCurrentItem(item);
+    setIsEditFormOpen(true);
+  };
+  
+  const closeEditForm = () => {
+    setCurrentItem(null);
+    setIsEditFormOpen(false);
+  };
+
+  // Handle add new item (mock implementation)
+  const handleAdd = (newItem) => {
+    setData([...data, { id: Date.now(), ...newItem }]);
+    closeForm();
+  };
+
+  // Handle edit item (mock implementation)
+  const handleEdit = (updatedItem) => {
+    setData(data.map(item => item.id === updatedItem.id ? updatedItem : item));
+    closeEditForm();
+  };
+
+  // Handle delete item (mock implementation)
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      setData(data.filter(item => item.id !== id));
+    }
+  };
 
   // Filter data based on search term
   const filteredData = data.filter((row) =>
@@ -43,7 +78,7 @@ export default function TableComponent({ columns, data }) {
     <div className={styles.container}>
       <div
         className={`${styles.tableContainer} ${
-          isFormOpen ? styles.blurred : ""
+          (isFormOpen || isEditFormOpen) ? styles.blurred : ""
         }`}
       >
         <h2 className={styles.tableTitle}>GRH Management</h2>
@@ -92,11 +127,19 @@ export default function TableComponent({ columns, data }) {
                         </span>
                       ) : column === "Actions" ? (
                         <div className={styles.actionButtons}>
-                          <CgProfile className={styles.iconButton} />
-                          <CiEdit className={styles.iconButton} />
+                          <CgProfile 
+                            className={styles.iconButton} 
+                            title="View Profile"
+                          />
+                          <CiEdit 
+                            className={styles.iconButton} 
+                            onClick={() => openEditForm(row)}
+                            title="Edit"
+                          />
                           <MdDeleteOutline
-                            id="delete"
                             className={styles.iconButtondelete}
+                            onClick={() => handleDelete(row.id)}
+                            title="Delete"
                           />
                         </div>
                       ) : (
@@ -111,18 +154,37 @@ export default function TableComponent({ columns, data }) {
         </TableContainer>
       </div>
 
-      {/* Show form only when isFormOpen is true */}
+      {/* Show add form when isFormOpen is true */}
       {isFormOpen && (
         <div className={styles.overlay} onClick={closeForm}>
           <div
             className={styles.formContainer}
             onClick={(e) => e.stopPropagation()}
           >
-            <AddRestaurantForm closeForm={closeForm} />{" "}
-            {/* ✅ Matches import */}
+            <AddRestaurantForm 
+              closeForm={closeForm}
+              onSubmit={handleAdd}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Show edit form when isEditFormOpen is true */}
+      {isEditFormOpen && (
+        <div className={styles.overlay} onClick={closeEditForm}>
+          <div
+            className={styles.formContainer}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <EditRestaurantForm 
+              closeForm={closeEditForm}
+              onSubmit={handleEdit}
+              initialData={currentItem}
+            />
           </div>
         </div>
       )}
     </div>
   );
 }
+

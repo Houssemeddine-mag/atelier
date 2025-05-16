@@ -1,50 +1,116 @@
-// import React from "react";
-// import Header from "../Components/Header";
-
-// export default function Menu() {
-//   return (
-//     <div className="page">
-//           <Header/>
-//         </div>
-//   )
-// }
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../Components/Header";
-import MenuTable from "../Components/Table/MenuT"; // Adjust path if needed
+import MenuTable from "../Components/Table/MenuT";
 import PageTitle from "../Components/pagetitle";
-export default function Menu() {
-  const columns = ["Name", "Category", "Price", "Availability", "Actions"];
+import api from "../api"; // Adjust the import path as necessary
 
-  const data = [
-    {
-      Name: "Cheeseburger",
-      Category: "Fast Food",
-      Price: "$5.99",
-      Availability: "Available",
-    },
-    {
-      Name: "Spaghetti Bolognese",
-      Category: "Pasta",
-      Price: "$8.50",
-      Availability: "Out of Stock",
-    },
-    {
-      Name: "Pizza Margherita",
-      Category: "Italian",
-      Price: "$7.50",
-      Availability: "Available",
-    },
-  ];
+export default function Menu() {
+  const menuId = 1; // Hardcoded menu ID
+  const [dishes, setDishes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const columns = ["Name", "Description", "Price", "Actions"];
+
+  // Fetch dishes from backend
+  const fetchDishes = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get(`/ceo/menu/${menuId}/dishes`);
+      console.log("Fetched dishes:", response.data); // Debugging: Log the fetched data
+      setDishes(response.data);
+      setError(null); // Clear any previous errors
+    } catch (err) {
+      console.error("Failed to fetch dishes:", err);
+      setError(
+        err.response?.data?.message ||
+          "Failed to fetch dishes. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDishes();
+  }, []);
+
+  // Handle dish creation
+  const handleDishAdded = async (newDish) => {
+    try { 
+      const response = await api.post(`/ceo/menu/${menuId}/dishes`, newDish);
+
+      console.log("Added dish:", response.data);
+
+      setDishes((prevDishes) => [...prevDishes, response.data]);
+    } catch (err) {
+      console.error("Failed to add dish:", err);
+      setError(
+        err.response?.data?.message || "Failed to add dish. Please try again."
+      );
+    }
+  };
+
+  const handleDishUpdated = async (updatedDish) => {
+    try {
+      await api.put(
+        `/ceo/menu/${menuId}/dishes/${updatedDish.id}`,
+        updatedDish
+      );
+
+      let updatedDishes = dishes.map((dish) => {
+        if (dish.id === updatedDish.id) {
+          return updatedDish;
+        }
+      });
+
+      setDishes(updatedDishes);
+    } catch (err) {
+      console.error("Failed to update dish:", err);
+      setError(
+        err.response?.data?.message ||
+          "Failed to update dish. Please try again."
+      );
+    }
+  };
+
+  // Handle dish deletion
+  const handleDishDeleted = async (dishId) => {
+    try {
+      await api.delete(`/ceo/menu/${menuId}/dishes/${dishId}`);
+      setDishes((prevDishes) =>
+        prevDishes.filter((dish) => dish.id !== dishId)
+      );
+    } catch (err) {
+      console.error("Failed to delete dish:", err);
+      setError(
+        err.response?.data?.message ||
+          "Failed to delete dish. Please try again."
+      );
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="page">
       <Header />
       <div className="content">
-        <PageTitle
-          title="Menu"
-          description="Manage dishes."
+        <PageTitle title="Menu" description="Manage dishes." />
+        {error && (
+          <div style={{ color: "red", marginBottom: "20px" }}>
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+        <MenuTable
+          columns={columns}
+          data={dishes}
+          menuId={menuId}
+          refreshDishes={fetchDishes}
+          onDishAdded={handleDishAdded}
+          onDishDeleted={handleDishDeleted}
+          onDishUpdated={handleDishUpdated}
         />
-        <MenuTable columns={columns} data={data} />
       </div>
     </div>
   );

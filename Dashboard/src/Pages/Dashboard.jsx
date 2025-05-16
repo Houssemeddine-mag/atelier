@@ -10,7 +10,6 @@ export default function Dashboard() {
     "Director",
     "Today's Sales",
     "Staff",
-    "Alert Level",
     "Actions",
   ];
 
@@ -21,7 +20,6 @@ export default function Dashboard() {
       Director: "Merdaci ahmed",
       "Today's Sales": "$500",
       Staff: 10,
-      "Alert Level": "Low",
       Actions: "Edit",
     },
     {
@@ -30,7 +28,6 @@ export default function Dashboard() {
       Director: "Magra houssem eddine",
       "Today's Sales": "$500",
       Staff: 80,
-      "Alert Level": "High",
       Actions: "Edit",
     },
     {
@@ -39,7 +36,6 @@ export default function Dashboard() {
       Director: "moustache",
       "Today's Sales": "$500",
       Staff: 50,
-      "Alert Level": "Low",
       Actions: "Edit",
     },
   ];
@@ -47,13 +43,18 @@ export default function Dashboard() {
   return (
     <div className="page">
       <Header />
+
       <div className="content">
         <PageTitle
           title="Dashboard"
           description="Overview of your restaurant chain performance."
         />
+
         <TableComponent columns={columns} data={data} />
       </div>
     </div>
   );
 }
+
+
+// win rahoum les pages 

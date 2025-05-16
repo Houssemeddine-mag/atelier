@@ -253,3 +253,76 @@
   .ok {
     color: #4CAF50;
   }
+
+  .statusBadge {
+  span {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    
+    .pending & {
+      background-color: #fff3e0;
+      color: #e65100;
+    }
+    
+    .preparing & {
+      background-color: #e3f2fd;
+      color: #0d47a1;
+    }
+    
+    .ready & {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+    
+    .delivered & {
+      background-color: #f1f8e9;
+      color: #558b2f;
+    }
+    
+    .canceled & {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+  }
+}
+
+.statusButtons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.progressButton {
+  background: #2196F3;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #42A5F5;
+    transform: translateY(-2px);
+  }
+}
+
+.finalStatus {
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  text-align: center;
+  font-style: italic;
+  color: #666;
+}
+
+.notes {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+  font-style: italic;
+}   
+

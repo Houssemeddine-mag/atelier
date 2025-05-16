@@ -2,6 +2,7 @@
 ```
 Dashboard
 ├─ Dashboard
+│  ├─ .env
 │  ├─ eslint.config.js
 │  ├─ index.html
 │  ├─ package-lock.json
@@ -10,9 +11,13 @@ Dashboard
 │  │  └─ vite.svg
 │  ├─ README.md
 │  ├─ src
+│  │  ├─ api.js
 │  │  ├─ assets
 │  │  ├─ Components
+│  │  │  ├─ auth
+│  │  │  │  └─ ProtectedRoute.jsx
 │  │  │  ├─ form
+│  │  │  │  ├─ AddDish.jsx
 │  │  │  │  ├─ AddGRHForm.jsx
 │  │  │  │  ├─ AddRestaurantForm.jsx
 │  │  │  │  └─ style.module.scss
@@ -31,11 +36,19 @@ Dashboard
 │  │  │  │  └─ style.module.scss
 │  │  │  └─ Table
 │  │  │     ├─ Dashboard_T.jsx
+│  │  │     ├─ EditGRHForm.jsx
 │  │  │     ├─ GRH_T.jsx
 │  │  │     ├─ MenuT.jsx
 │  │  │     ├─ Restaurant.module.scss
 │  │  │     ├─ Restaurant_T.jsx
 │  │  │     └─ style.module.scss
+│  │  ├─ context
+│  │  │  └─ AuthContext.js
+│  │  ├─ hocs
+│  │  │  ├─ WithAuth.jsx
+│  │  │  └─ WithUser.jsx
+│  │  ├─ hooks
+│  │  │  └─ useAuth.jsx
 │  │  ├─ index.scss
 │  │  ├─ main.jsx
 │  │  └─ Pages

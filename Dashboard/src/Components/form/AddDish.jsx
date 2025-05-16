@@ -1,31 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./style.module.scss";
-// import api from "../../api";
 
-export default function AddRestaurantForm({
+export default function AddDish({
   closeForm,
-  refreshRestaurants,
-  onRestaurantAdded,
-  onRestaurantUpdated,
-  restaurant,
+  refreshDishes,
+  onDishAdded,
+  onDishUpdated,
+  dish,
 }) {
   const [formData, setFormData] = useState({
     name: "",
-    location: "",
-    ceoid: "",
+    price: "",
+    description: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    if (restaurant) {
-      setFormData({
-        name: restaurant.name || "",
-        location: restaurant.location || "",
-        ceoid: restaurant.ceoid || "",
-      });
-    }
-  }, [restaurant]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,49 +27,62 @@ export default function AddRestaurantForm({
     setError(null);
 
     try {
-      if (restaurant) {
-        await onRestaurantUpdated({ ...formData, id: restaurant.id });
+      if (dish) {
+        onDishUpdated({
+          ...formData,
+          id: dish.id,
+        });
       } else {
-        await onRestaurantAdded(formData);
+        onDishAdded(formData);
       }
-      refreshRestaurants();
+
+      refreshDishes();
       closeForm();
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to save restaurant.");
+      setError(err.response?.data?.message || "Failed to add dish.");
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  React.useEffect(() => {
+    if (!dish) return;
+
+    setFormData({
+      name: dish.name || "",
+      price: dish.price || "",
+      description: dish.description || "",
+    });
+  }, [dish]);
 
   return (
     <div className={styles.formContent}>
       <button className={styles.closeButton} onClick={closeForm}>
         &times;
       </button>
-      <h2>{restaurant ? "Edit Restaurant" : "Add New Restaurant"}</h2>
+      <h2>Add New Dish</h2>
       {error && <div className={styles.error}>{error}</div>}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
-          placeholder="Restaurant Name"
+          placeholder="Dish Name"
           value={formData.name}
           onChange={handleChange}
           required
         />
         <input
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={formData.location}
+          type="number"
+          name="price"
+          placeholder="Price"
+          value={formData.price}
           onChange={handleChange}
           required
         />
-        <input
-          type="number"
-          name="ceoid"
-          placeholder="CEO ID"
-          value={formData.ceoid}
+        <textarea
+          name="description"
+          placeholder="Description"
+          value={formData.description}
           onChange={handleChange}
           required
         />
@@ -90,8 +92,13 @@ export default function AddRestaurantForm({
             className={styles.submitButton}
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Saving..." : restaurant ? "Save" : "Add"}
+            {dish ? (
+              <>{isSubmitting ? "Updating..." : "Update Dish"}</>
+            ) : (
+              <>{isSubmitting ? "Adding..." : "Add Dish"}</>
+            )}
           </button>
+
           <button
             type="button"
             className={styles.cancelButton}
