@@ -1186,8 +1186,22 @@ const DirectorDash = () => {
         const menuRes = await api.get("/manager/menu/1/dishes");
         setMenuItems(menuRes.data);
 
-        const staffRes = await api.get("/manager/staff");
-        setStaff(staffRes.data);
+        const staffRes = await (async () => {
+          let chefs = await api.get("/manager/chefs");
+          let agents = await api.get("/manager/delivery-agents");
+
+          chefs = chefs.data?.map((chef) => ({ ...chef, role: "CHEF" }));
+          agents = agents.data?.map((agent) => ({
+            ...agent,
+            role: "DELIVERY",
+          }));
+
+          return [...chefs, ...agents];
+        })();
+
+        console.log(staffRes);
+
+        setStaff(staffRes);
       } catch (error) {
         console.error("Data loading error:", error);
         alert("Failed to load data. Please try again later.");
@@ -1198,6 +1212,10 @@ const DirectorDash = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log(staff);
+  }, [staff]);
 
   const handleAddToDailyMenu = (itemId) => {
     setEditingItemId(itemId);
@@ -1214,6 +1232,7 @@ const DirectorDash = () => {
       setDailyMenu(dailyMenu.filter((item) => item.id !== itemId));
     } else {
       const existing = dailyMenu.find((item) => item.id === itemId);
+
       if (existing) {
         setDailyMenu(
           dailyMenu.map((item) =>
@@ -1245,14 +1264,20 @@ const DirectorDash = () => {
   const submitDailyMenu = async () => {
     try {
       // Transform the daily menu state to match the backend DTO structure
-      const menuItems = dailyMenu.map((item) => ({
-        dishId: item.id,
-        quantity: item.quantity,
-      }));
+      const items = dailyMenu.map((item) => {
+        let menuItem = menuItems.find((m) => m.id === item.id);
+
+        return {
+          dishId: menuItem?.id,
+          dishName: menuItem?.name,
+          availableQuantity: item.quantity,
+          price: menuItem?.price,
+        };
+      });
 
       // Create the request body according to DailyMenuCreateRequest
       const requestBody = {
-        items: menuItems,
+        dishes: items,
       };
 
       // Make API call to create daily menu
@@ -1261,9 +1286,10 @@ const DirectorDash = () => {
       // Update local state with the response data
       setRestaurantData((prev) => ({
         ...prev,
-        currentDailyMenu: response.data.items.map((item) => ({
+        currentDailyMenu: response.data.dishes.map((item) => ({
           name: item.dishName,
-          quantity: item.quantity,
+          quantity: item.availableQuantity,
+          price: item.price,
         })),
       }));
 
@@ -1367,7 +1393,7 @@ const DirectorDash = () => {
   const handleDeleteStaff = async (staffId) => {
     if (!window.confirm(`Delete this staff member?`)) return;
     setStaff(staff.filter((s) => s.id !== staffId));
-    alert("Staff member deleted successfully!");
+    alert("Staff member deleted s((uccessfully!");
   };
 
   const filteredStaff = staff.filter(
@@ -1913,31 +1939,23 @@ const DirectorDash = () => {
               <table className={styles.staffTable}>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Role</th>
                     <th>ID Number</th>
-                    <th>Hire Date</th>
-                    <th>Actions</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Role</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredStaff.map((person) => (
+                  {staff.map((person) => (
                     <tr key={person.id}>
+                      <td>{person.id}</td>
                       <td>
                         <div className={styles.staffInfo}>
-                          {person.picture && (
-                            <img
-                              src={person.picture}
-                              alt={person.fullName}
-                              className={styles.staffImage}
-                            />
-                          )}
-                          {person.fullName}
+                          {person.firstName}
                         </div>
                       </td>
+                      <td>{person.lastName}</td>
                       <td>{person.role}</td>
-                      <td>{person.idNumber}</td>
-                      <td>{person.hireDate}</td>
                       <td>
                         <button
                           className={styles.editButton}
